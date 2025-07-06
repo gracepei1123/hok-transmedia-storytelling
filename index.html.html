@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honor of Kings: A Transmedia Narrative Deep Dive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F2F5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Specific adjustments for the radar chart container */
+        #principles .chart-container {
+            height: 450px; /* Increased height for radar chart */
+            max-height: 550px; /* Increased max-height for radar chart */
+        }
+        .flowchart-node {
+            border: 2px solid #F7A823;
+            background-color: #FFFFFF;
+            color: #383434;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .flowchart-connector {
+            position: absolute;
+            background-color: #F7A823;
+            z-index: 0;
+        }
+        .arrow-down {
+            width: 4px;
+            height: 64px; /* Adjusted height to match gap-y-16 */
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%; /* Positioned at the bottom of the parent node */
+        }
+        .arrow-right {
+            height: 4px;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%);
+        }
+        .arrow-left {
+            height: 4px;
+            width: 100%;
+            top: 50%;
+            right: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body class="text-[#383434]">
+
+    <header class="bg-[#00A9E0] text-white p-8 text-center rounded-b-3xl shadow-lg">
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight">HONOR OF KINGS</h1>
+        <p class="text-xl md:text-2xl mt-2 font-light">Enhancing Hero Memorability: A Transmedia Narrative Analysis</p>
+        <p class="text-lg md:text-xl mt-2 font-light">Grace Pei, Xi'an Jiaotong University</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="text-center my-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-6xl font-black text-[#F05A28]">3M+</p>
+                    <h3 class="text-2xl font-bold mt-2">Daily Active Players</h3>
+                    <p class="mt-2 text-gray-600">A global phenomenon demanding rich, engaging narratives to maintain its massive player base.</p>
+                </div>
+                <div class="md:col-span-2 text-left bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold text-[#00A9E0] mb-4">The Strategic Power of Story</h2>
+                    <p class="text-lg text-gray-700">In the competitive world of MOBAs, hero stories are not just flavor text; they are a critical asset. A compelling cross-media narrative transforms characters into legends, fostering deep player investment and loyalty. This infographic analyzes how Honor of Kings builds its narrative ecosystem and provides a roadmap for enhancing hero memorability on a global scale.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="my-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">The Narrative Ecosystem</h2>
+             <p class="text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                Honor of Kings extends its lore across multiple platforms, with each medium playing a distinct role in building a cohesive universe. This multi-pronged approach caters to different player engagement styles, from fast-paced gameplay to deep narrative consumption.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center transform hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/your-username/your-repo/main/images/gameplay.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/00A9E0/FFFFFF?text=Gameplay';" alt="" class="mb-3 rounded-full">
+                    <h3 class="text-xl font-bold mb-2">Core MOBA</h3>
+                    <p class="text-gray-600 text-sm">Introduces hero identities, core abilities, and personality through gameplay and voice lines.</p>
+                    <a href="https://world.honorofkings.com/ipworld/en/index.html" target="_blank" class="mt-4 px-4 py-2 bg-[#00A9E0] text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors">More</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center transform hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/your-username/your-repo/main/images/animation.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/F05A28/FFFFFF?text=Animation';" alt="" class="mb-3 rounded-full">
+                    <h3 class="text-xl font-bold mb-2">Animated Series</h3>
+                    <p class="text-gray-600 text-sm">Delivers cinematic, emotional hero journeys and explores deeper thematic arcs.</p>
+                    <a href="https://www.youtube.com/watch?v=PFUqylaKANw" target="_blank" class="mt-4 px-4 py-2 bg-[#F05A28] text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors">More</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center transform hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/your-username/your-repo/main/images/comics.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/F7A823/FFFFFF?text=Comics';" alt="" class="mb-3 rounded-full">
+                    <h3 class="text-xl font-bold mb-2">Comics/Webtoons</h3>
+                    <p class="text-gray-600 text-sm">Offers detailed backstories, regional lore, and expands the storyworld visually.</p>
+                    <a href="https://world.honorofkings.com/ipworld/en/animation.html" target="_blank" class="mt-4 px-4 py-2 bg-[#F7A823] text-white text-sm font-semibold rounded-lg hover:bg-yellow-700 transition-colors">More</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center transform hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/your-username/your-repo/main/images/open_world.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/A8D144/FFFFFF?text=Open+World';" alt="" class="mb-3 rounded-full">
+                    <h3 class="text-xl font-bold mb-2">Spin-off RPG</h3>
+                    <p class="text-gray-600 text-sm">Enables direct player agency and experiential discovery of hero origins in an open world.</p>
+                    <a href="https://world.qq.com/?ADTAG=pvp.nav.hokpc" target="_blank" class="mt-4 px-4 py-2 bg-[#A8D144] text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition-colors">More</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center transform hover:scale-105 transition-transform">
+                    <img src="https://raw.githubusercontent.com/your-username/your-repo/main/images/music.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/6B7280/FFFFFF?text=Music';" alt="" class="mb-3 rounded-full">
+                    <h3 class="text-xl font-bold mb-2">Music/Soundtracks</h3>
+                    <p class="text-gray-600 text-sm">Reinforces character identity and emotional tone through auditory association.</p>
+                    <a href="https://www.youtube.com/watch?v=R4ZK6sbwL5k&list=RDR4ZK6sbwL5k&start_radio=1" target="_blank" class="mt-4 px-4 py-2 bg-[#6B7280] text-white text-sm font-semibold rounded-lg hover:bg-gray-700 transition-colors">More</a>
+                </div>
+            </div>
+             <div class="bg-white rounded-lg shadow-md p-6 mt-12">
+                <h3 class="text-2xl font-bold text-center mb-4">Qualitative Narrative Contribution</h3>
+                 <p class="text-center text-lg text-gray-600 max-w-2xl mx-auto mb-6">This chart visualizes the estimated contribution of each platform to the overall depth and memorability of hero narratives. While the MOBA is the entry point, the spin-off RPG and animation are designed for deeper narrative impact.</p>
+                <div class="chart-container h-[400px] md:h-96">
+                    <canvas id="contributionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="principles" class="my-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Core Principles for Memorable Storytelling</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4">A Balanced Strategy</h3>
+                    <p class="text-gray-700">Effective transmedia storytelling isn't accidental. It relies on a balanced application of key principles. A strong core narrative ensures consistency, while leveraging each medium's unique strengths creates a rich, multi-layered experience. The goal is to build a world that is accessible to newcomers yet deeply rewarding for dedicated fans who explore every corner.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="chart-container">
+                        <canvas id="principlesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="my-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Strategic Analysis: A Path Forward</h2>
+            <p class="text-center text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                An analysis of Honor of Kings current strategy reveals a strong foundation with clear opportunities for enhancement. By capitalizing on its strengths and addressing areas for improvement, the franchise can significantly boost hero memorability.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#A8D144]">
+                    <h3 class="text-2xl font-bold mb-4 text-[#A8D144]">Strengths 👍</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><b>Diverse Media Portfolio:</b> Wide reach across games, animation, and comics.</li>
+                        <li><b>Rich Cultural Foundation:</b> Deep integration of Chinese mythology provides unique hero backdrops.</li>
+                        <li><b>High Player Agency Potential:</b> The upcoming RPG promises deep, interactive lore experiences.</li>
+                        <li><b>Strong Auditory Reinforcement:</b> Memorable soundtracks and hero themes solidify identity.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F7A23]">
+                    <h3 class="text-2xl font-bold mb-4 text-[#F7A23]">Areas for Enhancement 🔧</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><b>Narrative Coherence:</b> Ensuring consistency between the fixed MOBA lore and dynamic RPG choices.</li>
+                        <li><b>In-Game Lore Accessibility:</b> Making lore easier to discover within the core MOBA without disrupting gameplay.</li>
+                        <li><b>Impact of Short-Form Content:</b> Boosting the narrative weight and promotion of comics and shorts.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="recommendations" class="my-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">A Three-Pronged Strategy for Unforgettable Heroes</h2>
+            <div class="relative px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-16 md:gap-x-8">
+                    <div class="relative md:col-start-1">
+                        <div class="flowchart-node">
+                             <div class="text-3xl mb-2">📜</div>
+                            <h3 class="text-xl font-bold">Strategic Content Development</h3>
+                        </div>
+                        <div class="flowchart-connector arrow-down bottom-0"></div>
+                    </div>
+                    <div class="relative md:col-start-2">
+                         <div class="flowchart-node">
+                            <div class="text-3xl mb-2">💬</div>
+                            <h3 class="text-xl font-bold">Community Engagement</h3>
+                        </div>
+                        <div class="flowchart-connector arrow-down bottom-0"></div>
+                    </div>
+                    <div class="relative md:col-start-3">
+                        <div class="flowchart-node">
+                            <div class="text-3xl mb-2">🎯</div>
+                            <h3 class="text-xl font-bold">In-Game Narrative Design</h3>
+                        </div>
+                        <div class="flowchart-connector arrow-down bottom-0"></div>
+                    </div>
+
+                    <div class="relative md:col-start-1">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                           <ul class="space-y-2 list-disc list-inside">
+                               <li>Implement a unified "Narrative Bible".</li>
+                               <li>Develop interactive, branching narratives.</li>
+                               <li>Create a central, accessible digital lore archive.</li>
+                           </ul>
+                        </div>
+                    </div>
+                     <div class="relative md:col-start-2">
+                         <div class="bg-gray-100 p-4 rounded-lg">
+                            <ul class="space-y-2 list-disc list-inside">
+                               <li>Promote and feature fan-driven lore activities.</li>
+                               <li>Run regular in-game story-focused events.</li>
+                               <li>Use social media for interactive storytelling.</li>
+                           </ul>
+                        </div>
+                    </div>
+                    <div class="relative md:col-start-3">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <ul class="space-y-2 list-disc list-inside">
+                               <li>Integrate subtle environmental storytelling.</li>
+                               <li>Expand character-specific quests & challenges.</li>
+                               <li>Enrich voice lines and dynamic interactions.</li>
+                           </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Moved these elements outside the relative px-4 div, now they will be in normal flow -->
+            <div class="w-full h-4 bg-[#F05A28] mt-16 hidden md:block"></div> <!-- Adjusted mt- from 24 to 16 -->
+            <div class="flex justify-center mt-8"> 
+                <div class="flowchart-node bg-[#F05A28] text-white border-none py-4 px-8 w-10/12 md:w-auto">
+                    <h3 class="text-2xl font-black">THE GOAL: TRULY UNFORGETTABLE HEROES</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="gemini-feature" class="my-16 bg-gradient-to-r from-blue-100 to-indigo-100 p-8 rounded-xl shadow-lg">
+            <h2 class="text-xl md:text-2xl font-bold text-center mb-8 text-[#00A9E0]">✨ Transmedia Storytelling Ideas ✨</h2>
+            <p class="text-center text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+                Want to explore how a concept, hero or theme in Honor of Kings could be expanded across different media types? Enter your idea here and let AI generate suggestions!
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+                <input type="text" id="ideaInput" placeholder="Enter hero name, concept, or theme..." class="flex-grow p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-[#00A9E0] text-gray-800">
+                <button id="generateIdeasBtn" class="px-6 py-3 bg-[#00A9E0] text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors flex items-center justify-center">
+                    <span id="buttonText">Generate Ideas</span>
+                    <svg id="loadingSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="ideasOutput" class="bg-white p-6 rounded-lg shadow-md min-h-[150px] text-gray-800">
+                <p class="text-center text-gray-500">Ideas will appear here, for reference only~</p>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center p-8 mt-16 bg-gray-800 text-white"> <!-- Adjusted mt- from 48 to 16 -->
+        <p>&copy; 2025 Infographic Analysis. Data synthesized from "Enhancing Hero Memorability in Honor of Kings: A Transmedia Narrative Analysis".</p>
+         <p class="text-xs text-gray-400 mt-2">This is a visualization of Grace Pei's research results and does not represent official data from Tencent or TiMi Studio Group.</p>
+    </footer>
+
+    <script>
+        function wrapText(text, maxLength) {
+            if (typeof text !== 'string' || text.length <= maxLength) {
+                return text;
+            }
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                // If adding the next word makes the line too long, or if the current line is empty and the word itself is too long,
+                // push the current line and start a new one.
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const sharedChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#383434',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#383434',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    titleFont: { size: 16, weight: 'bold' },
+                    bodyFont: { size: 14 },
+                    padding: 12,
+                    cornerRadius: 8
+                }
+            }
+        };
+
+        const vibrantPalette = {
+            blue: '#00A9E0',
+            orange: '#F7A823',
+            redOrange: '#F05A28',
+            green: '#A8D144',
+            darkGray: '#383434'
+        };
+
+        const ctxContribution = document.getElementById('contributionChart').getContext('2d');
+        new Chart(ctxContribution, {
+            type: 'doughnut',
+            data: {
+                labels: ['Core MOBA', 'Animated Series', 'Comics/Webtoons', 'Spin-off RPG (Potential)', 'Music/Soundtracks'],
+                datasets: [{
+                    label: 'Narrative Contribution',
+                    data: [20, 25, 15, 30, 10],
+                    backgroundColor: [
+                        vibrantPalette.blue,
+                        vibrantPalette.redOrange,
+                        vibrantPalette.orange,
+                        vibrantPalette.green,
+                        '#6B7280'
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                cutout: '60%'
+            }
+        });
+
+        const ctxPrinciples = document.getElementById('principlesChart').getContext('2d');
+        new Chart(ctxPrinciples, {
+            type: 'radar',
+            data: {
+                labels: [
+                    ['Cohesive Core', 'Narrative'], /* Manually split */
+                    ['Medium-Specific', 'Strengths'], /* Manually split */
+                    ['Audience', 'Participation'], /* Manually split */
+                    ['Narrative', 'Independence'], /* Manually split */
+                    ['Relatable', 'Characters'] /* Manually split */
+                ],
+                datasets: [{
+                    label: 'Importance for Memorability',
+                    data: [9, 8, 7, 8, 10],
+                    backgroundColor: 'rgba(240, 90, 40, 0.2)',
+                    borderColor: vibrantPalette.redOrange,
+                    pointBackgroundColor: vibrantPalette.redOrange,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: vibrantPalette.redOrange,
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: { 
+                            color: vibrantPalette.darkGray,
+                            font: { size: 10, weight: 'bold' }, /* Kept font size at 10 */
+                            padding: 5 /* Decreased padding to 5 */
+                        },
+                        ticks: {
+                            color: '#FFFFFF',
+                            backdropColor: 'transparent',
+                            stepSize: 2
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+
+        // Gemini API Integration
+        document.getElementById('generateIdeasBtn').addEventListener('click', async () => {
+            const ideaInput = document.getElementById('ideaInput').value;
+            const ideasOutput = document.getElementById('ideasOutput');
+            const buttonText = document.getElementById('buttonText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            if (!ideaInput.trim()) {
+                ideasOutput.innerHTML = '<p class="text-red-500 text-center">Please enter your idea!</p>';
+                return;
+            }
+
+            buttonText.textContent = 'Generating...';
+            loadingSpinner.classList.remove('hidden');
+            ideasOutput.innerHTML = '<p class="text-center text-gray-500">Generating ideas...</p>';
+
+            try {
+                const prompt = `Based on the concept of Honor of Kings' cross-media narrative, generate creative ideas for how the following idea/character/theme "${ideaInput}" could be expanded across different media types. Provide specific suggestions for:
+- Gameplay (new modes, character interactions, in-game events)
+- Animated Series (story arcs, character focus, emotional themes)
+- Comics/Webtoons (detailed backstories, side stories, world-building elements)
+- Music/Soundtracks (character themes, event songs, emotional leitmotifs)
+- Spin-off RPG (quests, exploration areas, player choices, lore integration)
+
+Format the response as a JSON array of objects, where each object has "mediaType" (string) and "ideas" (array of strings). Example: [{"mediaType": "Gameplay", "ideas": ["Idea 1", "Idea 2"]}]`;
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = {
+                    contents: chatHistory,
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    "mediaType": { "type": "STRING" },
+                                    "ideas": {
+                                        "type": "ARRAY",
+                                        "items": { "type": "STRING" }
+                                    }
+                                },
+                                "propertyOrdering": ["mediaType", "ideas"]
+                            }
+                        }
+                    }
+                };
+
+                const apiKey = "AIzaSyDHNxdMDJliltHf1QBENPQH0KrnvMhDDdo"; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const jsonString = result.candidates[0].content.parts[0].text;
+                    const parsedJson = JSON.parse(jsonString);
+
+                    let htmlOutput = '';
+                    parsedJson.forEach(item => {
+                        htmlOutput += `<h3 class="text-xl font-bold text-[#00A9E0] mt-4 mb-2">${item.mediaType}</h3>`;
+                        htmlOutput += '<ul class="list-disc list-inside space-y-1 text-gray-700">';
+                        item.ideas.forEach(idea => {
+                            htmlOutput += `<li>${idea}</li>`;
+                        });
+                        htmlOutput += '</ul>';
+                    });
+                    ideasOutput.innerHTML = htmlOutput;
+
+                } else {
+                    ideasOutput.innerHTML = '<p class="text-red-500 text-center">Could not generate ideas. Please try again.</p>';
+                }
+
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                ideasOutput.innerHTML = '<p class="text-red-500 text-center">An error occurred. Please check your connection or try again later.</p>';
+            } finally {
+                buttonText.textContent = 'Generate Ideas';
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
