@@ -1,4 +1,4 @@
-# hok-crossmedia_storytelling
+# Enhancing Hero Memorability in Honor of Kings: A Transmedia Narrative Analysis
 
 Author: Bui Thanh Thao (Grace Pei)
 
